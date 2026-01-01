@@ -49,7 +49,8 @@ async def chat(request: ChatRequest):
                 "metadata": {
                     "usage": response_data["usage_metadata"],
                     "params": response_data["params"]
-                }
+                },
+                "visualization": response_data.get("visualization", {})
             }
         )
     except Exception as e:

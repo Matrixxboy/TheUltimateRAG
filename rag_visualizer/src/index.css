@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans;
+    font-family: 'Inter', sans-serif;
+    /* Simplified background for minimal aesthetic */
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(241, 245, 249, 0.8) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(241, 245, 249, 0.8) 0%, transparent 25%);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer components {
+  /* Minimal & Responsive Card Styles */
+  .glass-panel {
+    @apply bg-white border border-slate-200 shadow-sm rounded-2xl;
+    /* Optional: Subtle glass effect ONLY on large screens if desired, otherwise keeping it solid for 'minimal' request */
+    @apply md:bg-white/90 md:backdrop-blur-sm; 
+  }
+  
+  .glass-input {
+    @apply bg-white border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200 rounded-xl shadow-sm;
+  }
+
+  .glass-btn {
+    @apply bg-white hover:bg-slate-50 active:bg-slate-100 border border-slate-200 text-slate-700 hover:text-indigo-600 transition-all duration-200 shadow-sm rounded-xl font-medium;
+  }
+
+  .glass-btn-primary {
+    @apply bg-slate-900 hover:bg-slate-800 text-white shadow-md shadow-slate-200 border border-transparent rounded-xl transition-all duration-200;
+  }
+}
+
+/* Scrollbar Styling - Clean & Minimal */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* slate-300 */
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* slate-400 */
+}

@@ -88,12 +88,18 @@ class RAGPipeline:
             config={"configurable": {"session_id": session_id}},
         )
         
-        # Return full metadata if needed via a dict, but current signature returns str.
-        # User requested "show everything the token size and temperature".
-        # LangChain response object usually contains usage metadata in response_metadata.
+        # 3. Get Visualization Data
+        # We perform a separate search to get the embeddings for visualization
+        # This ensures we get the exact points in vector space
+        viz_data = self.vector_manager.search_with_embeddings(
+            query=query_text,
+            user_id=user_id,
+            k=10 # Visualize top 10
+        )
         
         return {
             "content": response.content,
             "usage_metadata": response.response_metadata if hasattr(response, "response_metadata") else {},
-            "params": model_params
+            "params": model_params,
+            "visualization": viz_data
         }
