@@ -3,6 +3,8 @@ sys.path.append(".")
 import os
 import asyncio
 from core.rag_engine import RAGPipeline
+from config.settings import settings
+
 
 async def test_org_data_workflow():
     print("--- Starting Organizational Data Test ---")
@@ -52,6 +54,6 @@ async def test_org_data_workflow():
     print("\n--- Test Finished ---")
 
 if __name__ == "__main__":
-    if not os.getenv("OPENAI_API_KEY"):
+    if not settings.OPENAI_API_KEY:
         print("WARNING: OPENAI_API_KEY not set.")
     asyncio.run(test_org_data_workflow())

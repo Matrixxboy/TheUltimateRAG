@@ -1,10 +1,9 @@
 from fastapi import APIRouter
 from utils.Response_Helper import make_response
 from utils.Response_Helper_Model import HTTPStatusCode, APICode
-from core.rag_engine import RAGPipeline
+from core.container import rag_engine
 
 router = APIRouter()
-rag_engine = RAGPipeline()
 
 @router.delete("/memory/{session_id}")
 async def clear_memory(session_id: str):

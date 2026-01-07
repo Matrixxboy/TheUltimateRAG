@@ -1,19 +1,21 @@
 from typing import Dict, List, Any
 from langchain_core.chat_history import InMemoryChatMessageHistory
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, BaseMessage
 from config.settings import settings
 from Database.Connection import get_db_connection
 from LLM.connection import get_llm
 from psycopg2.extras import DictCursor
+import json
+from langchain_community.chat_message_histories import RedisChatMessageHistory
+import redis
 
 
 class MemoryManager:
     def __init__(self):
-        # In-memory storage for active sessions.
-        # In production, replace with Redis or DB.
-        self._sessions: Dict[str, InMemoryChatMessageHistory] = {}
+        # Redis storage for active sessions.
+        self.redis_url = settings.REDIS_URL
         self.window_size = settings.MEMORY_WINDOW_SIZE
-        self.short_term_limit = settings.SHORT_TERM_MEMORY_LIMIT
+        self.threshold = settings.MEMORY_WINDOW_LIMIT # N
         self._init_db()
 
     def _init_db(self):
@@ -23,31 +25,26 @@ class MemoryManager:
             if conn:
                 with conn.cursor() as cur:
                     with open("Database/schema.sql", "r") as f:
-                        cur.execute(f.read())
+                        schema_sql = f.read().replace("{{EMBEDDING_DIMENSION}}", str(settings.EMBEDDING_DIMENSION))
+                        cur.execute(schema_sql)
                 conn.commit()
                 conn.close()
         except Exception as e:
             print(f"Warning: Failed to init DB: {e}")
 
-    def get_session_memory(self, session_id: str) -> InMemoryChatMessageHistory:
+    def get_session_memory(self, session_id: str) -> RedisChatMessageHistory:
         """
-        Get or create a memory buffer for a specific session.
+        Get or create a memory buffer for a specific session using Redis.
         """
-        if session_id not in self._sessions:
-            self._sessions[session_id] = InMemoryChatMessageHistory()
-        return self._sessions[session_id]
+        return RedisChatMessageHistory(session_id=session_id, url=self.redis_url)
 
-    def _apply_window(self, memory: InMemoryChatMessageHistory):
+    def _apply_window(self, memory: RedisChatMessageHistory):
         """
-        Enforce sliding window size on messages.
+        Enforce sliding window size on messages (handled by consolidation now, but kept for safety).
         """
-        if self.window_size <= 0:
-            return
-
-        messages = memory.messages
-        if len(messages) > self.window_size * 2:
-            # keep last N human+AI turns
-            memory.messages = messages[-self.window_size * 2 :]
+        # RedisChatMessageHistory doesn't strictly enforce window on add, 
+        # so we rely on enforce_memory_consolidation.
+        pass
 
     def add_user_message(self, session_id: str, message: str):
         """
@@ -77,59 +74,103 @@ class MemoryManager:
         """
         Clear memory for a specific session.
         """
-        if session_id in self._sessions:
-            self._sessions[session_id].clear()
+        # Clear from Redis
+        memory = self.get_session_memory(session_id)
+        memory.clear()
+            
+        # Also clear from DB
+        conn = get_db_connection()
+        if conn:
+            try:
+                with conn.cursor() as cur:
+                    cur.execute("DELETE FROM long_term_memories WHERE session_id = %s", (session_id,))
+                conn.commit()
+                print(f"Long-term memory cleared for {session_id}")
+            except Exception as e:
+                print(f"Error clearing long-term memory: {e}")
+            finally:
+                conn.close()
 
     def enforce_memory_consolidation(self, session_id: str):
         """
-        Check if short-term memory exceeds limit. If so, summarize and archive to DB.
+        Check if short-term memory exceeds limit N. If so, summarize oldest N and archive to DB.
         """
         memory = self.get_session_memory(session_id)
         messages = memory.messages
         
-        # Count user messages or total messages? 
-        # Requirement: "n numbers of chat" -> usually pairs. 
-        # If limit is 5, we wait for 5 pairs (10 messages).
-        # Let's count pairs (User messages).
-        user_msg_count = sum(1 for m in messages if isinstance(m, HumanMessage))
-
-        if user_msg_count > self.short_term_limit:
-            print(f"Consolidating memory for session {session_id}...")
+        # Check against threshold N (Total messages)
+        # Assuming threshold counts individual messages (Human + AI)
+        if len(messages) > self.threshold:
+            print(f"Consolidating memory for session {session_id} (Size > {self.threshold})...")
             
-            # 1. Summarize
+            # 1. Slice: Oldest N messages
+            messages_to_archive = messages[:self.threshold]
+            remaining_messages = messages[self.threshold:]
+            
+            # 2. Transform: LLM Summarization
             llm = get_llm()
-            # Convert messages to string
-            conversation_text = "\n".join([f"{m.type}: {m.content}" for m in messages])
-            prompt = f"""
-            Summarize the following conversation into a concise paragraph (word chunks/key points) 
-            to be stored as long-term memory. Retain key facts and context.
+            conversation_text = "\n".join([f"{m.type}: {m.content}" for m in messages_to_archive])
             
+            # Structured Prompt for JSON output
+            prompt = f"""
+            Analyze the following conversation segment and provide a result in JSON format with two keys:
+            1. "summary": A concise paragraph summarizing the key facts and context.
+            2. "key_concepts": A list of strings representing the main entities or topics discussed.
+
             Conversation:
             {conversation_text}
             
-            Summary:
+            Output JSON only.
             """
-            response = llm.invoke([HumanMessage(content=prompt)])
-            summary = response.content
-
-            # 2. Store in DB
-            conn = get_db_connection()
-            if conn:
-                try:
+            
+            try:
+                # Add json mode or simple parsing (OpenAI usually handles json well if asked)
+                response = llm.invoke([HumanMessage(content=prompt)])
+                content = response.content.strip()
+                
+                # Basic cleanup if markdown is included
+                if content.startswith("```json"):
+                    content = content.replace("```json", "").replace("```", "")
+                
+                data = json.loads(content)
+                summary = data.get("summary", "")
+                key_concepts = data.get("key_concepts", [])
+                
+                if not summary:
+                    summary = content # Fallback
+                
+                # 3. Persist to DB
+                conn = get_db_connection()
+                if conn:
                     with conn.cursor() as cur:
                         cur.execute(
-                            "INSERT INTO long_term_memories (session_id, summary_chunk) VALUES (%s, %s)",
-                            (session_id, summary)
+                            "INSERT INTO long_term_memories (session_id, summary_chunk, key_concepts) VALUES (%s, %s, %s)",
+                            (session_id, summary, json.dumps(key_concepts))
                         )
                     conn.commit()
-                    print("Summary stored in DB.")
-                except Exception as e:
-                    print(f"Error storing summary: {e}")
-                finally:
                     conn.close()
+                    print("Summary and Key Concepts stored in DB.")
+                    
+                    print("Summary and Key Concepts stored in DB.")
+                    
+                    # 4. Flush & Reset: Remove the oldest N messages from Redis
+                    # RedisChatMessageHistory stores messages in a LIST at key "message_store:{session_id}" (default prefix is 'message_store:')
+                    # However, langchain-community's RedisChatMessageHistory might use a configurable key.
+                    # Default key is just session_id or with prefix. Let's inspect or use a separate redis client connection.
+                    
+                    # We can use the redis client inside the memory object if exposed, or create a new one.
+                    # Creating a lightweight connection here for the trim operation.
+                    r_client = redis.Redis.from_url(self.redis_url)
+                    redis_key = f"message_store:{session_id}" # Default langchain prefix
+                    
+                    # LPOP N times to remove the oldest N
+                    # (Redis List: Left is Oldest, Right is Newest usually in LangChain implementation? 
+                    # LangChain appends to the end (RPUSH), so index 0 is oldest. LPOP removes from left/oldest.)
+                    for _ in range(self.threshold):
+                        r_client.lpop(redis_key)
+                        
+                    print(f"Short-term memory flushed. Removed oldest {self.threshold} messages.")
+                    
+            except Exception as e:
+                print(f"Error during memory consolidation: {e}")
 
-            # 3. Clear Short-Term Memory
-            # We might want to keep the SYSTEM prompt if we had one, but InMemoryChatMessageHistory is usually just chat.
-            # We'll clear it completely as requested ("deleted the short term memory").
-            memory.clear()
-            print("Short-term memory cleared.")

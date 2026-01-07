@@ -1,5 +1,6 @@
 import React from 'react';
-import { Github, Twitter, Linkedin, Heart } from 'lucide-react';
+import { FaXTwitter, FaLinkedin, FaGithub, FaRegHeart } from "react-icons/fa6"
+
 
 const Footer = () => {
     return (
@@ -27,13 +28,13 @@ const Footer = () => {
                         <h4 className="font-semibold text-slate-900">Connect</h4>
                         <div className="flex gap-4">
                             <a href="#" className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:text-slate-900 hover:border-slate-300 transition-all shadow-sm">
-                                <Github className="w-4 h-4" />
+                                <FaGithub className="w-4 h-4" />
                             </a>
-                            <a href="#" className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:text-blue-400 hover:border-blue-200 transition-all shadow-sm">
-                                <Twitter className="w-4 h-4" />
+                            <a href="#" className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:text-black hover:border-blue-200 transition-all shadow-sm">
+                                <FaXTwitter className="w-4 h-4" />
                             </a>
                             <a href="#" className="p-2 bg-white border border-slate-200 rounded-lg text-slate-500 hover:text-blue-700 hover:border-blue-200 transition-all shadow-sm">
-                                <Linkedin className="w-4 h-4" />
+                                <FaLinkedin className="w-4 h-4" />
                             </a>
                         </div>
                     </div>

@@ -159,7 +159,7 @@ We welcome contributions! Please see `CONTRIBUTING.md` for details.
 
 ## 🎓 Learning Resources
 
-New to Git? Check out our [Git Education Guide](Learn.md) included in this repo!
+New to Git? Check out our [Git Education Guide](LEARN.md) included in this repo!
 
 ---
 

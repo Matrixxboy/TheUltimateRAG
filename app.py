@@ -5,7 +5,7 @@ from API.v1.router import api_router
 
 app = FastAPI(
     title=settings.APP_NAME,
-    description="A boilerplate RAG system with memory and vector storage.",
+    description="A Ultimate RAG system with memory and vector storage.",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc"

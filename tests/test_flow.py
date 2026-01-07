@@ -3,6 +3,7 @@ sys.path.append(".")
 import os
 import asyncio
 from core.rag_engine import RAGPipeline
+from config.settings import settings
 
 # Create a dummy file for testing
 def create_dummy_pdf():
@@ -50,6 +51,6 @@ async def test_workflow():
     print("\n--- Test Finished ---")
 
 if __name__ == "__main__":
-    if not os.getenv("OPENAI_API_KEY"):
+    if not settings.OPENAI_API_KEY:
         print("WARNING: OPENAI_API_KEY not set. Test might fail if not reading from .env correctly or if key is missing.")
     asyncio.run(test_workflow())

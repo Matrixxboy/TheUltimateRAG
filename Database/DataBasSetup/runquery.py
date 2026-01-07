@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from Database.Connection import get_db_connection
+from config.settings import settings
 
 load_dotenv()
 
@@ -16,7 +17,7 @@ print("✅ Database connection successful")
 
 try:
     # ---- Embedding dimension ----
-    embedding_dimension = int(os.getenv("EMBEDDING_DIMENSION", 384))
+    embedding_dimension = int(settings.EMBEDDING_DIMENSION)
 
     # ---- Enable pgvector extension ----
     cursor.execute("CREATE EXTENSION IF NOT EXISTS vector;")

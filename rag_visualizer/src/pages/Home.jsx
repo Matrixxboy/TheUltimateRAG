@@ -95,9 +95,9 @@ const Home = () => {
                         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                         className="text-6xl md:text-8xl font-bold text-slate-900 tracking-tight mb-8"
                     >
-                        The Ultimate <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
-                            RAG Boilerplate
+                        The Ultimate
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 ml-2">
+                            RAG
                         </span>
                     </motion.h1>
 

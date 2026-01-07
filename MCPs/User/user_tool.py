@@ -2,6 +2,7 @@ import getpass
 import os
 import platform
 from langchain_core.tools import tool
+from config.settings import settings
 
 @tool
 def user_mcp():
@@ -16,7 +17,7 @@ def active_app_mcp():
     # We can also check if we are in a specific known environment
     
     return {
-        "current_term": os.getenv("TERM", "unknown"),
-        "shell": os.getenv("SHELL", "unknown"),
+        "current_term": settings.TERM,
+        "shell": settings.SHELL,
         "platform": platform.platform()
     }

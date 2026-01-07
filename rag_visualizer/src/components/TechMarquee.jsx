@@ -1,20 +1,32 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Database, Code, Brain, Server, Cloud, Cpu, Globe, Lock } from 'lucide-react';
+import {
+  SiPytorch,
+  SiRedis,
+  SiLangchain,
+  SiFastapi,
+  SiOpenai,
+  SiHuggingface,
+  SiPython,
+  SiReact,
+  SiPostgresql,
+  SiPydantic,
+  SiGunicorn,
+} from "react-icons/si"
 
 const techs = [
-    { name: 'React', icon: Code },
-    { name: 'Python', icon: Server },
-    { name: 'OpenAI', icon: Brain },
-    { name: 'FAISS', icon: Database },
-    { name: 'LangChain', icon: Layers },
-    { name: 'FastAPI', icon: Zap },
-    { name: 'PyTorch', icon: Cpu },
-    { name: 'HuggingFace', icon: Heart },
-];
-
-// Fallback icons if specific libs aren't available, or just generic ones
-import { Layers, Zap, Heart } from 'lucide-react';
+    { name: "Python", icon: SiPython },
+    { name: "Pydantic", icon: SiPydantic },
+    { name: "Gunicorn", icon: SiGunicorn },
+    { name: "OpenAI", icon: SiOpenai },
+    { name: "LangChain", icon: SiLangchain },
+    { name: "FastAPI", icon: SiFastapi },
+    { name: "PyTorch", icon: SiPytorch },
+    { name: "HuggingFace", icon: SiHuggingface },
+    { name: "Redis", icon: SiRedis },
+    { name: "PostgreSQL", icon: SiPostgresql },
+    { name: "React", icon: SiReact },
+]
 
 const TechMarquee = () => {
     return (

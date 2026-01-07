@@ -2,12 +2,11 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from utils.Response_Helper import make_response
 from utils.Response_Helper_Model import HTTPStatusCode, APICode
-from core.rag_engine import RAGPipeline
-
-router = APIRouter()
-rag_engine = RAGPipeline()
+from core.container import rag_engine
 
 from typing import Optional
+
+router = APIRouter()
 
 class ChatRequest(BaseModel):
     query: str
