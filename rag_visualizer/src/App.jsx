@@ -12,6 +12,16 @@ import MaintenanceScreen from "./components/MaintenanceScreen"
 
 import SmoothScroll from "./components/SmoothScroll"
 
+import Intro from "./components/docs/sections/Intro"
+import EnvSetup from "./components/docs/sections/EnvSetup"
+import ApiReference from "./components/docs/sections/ApiReference"
+import Features from "./components/docs/sections/Features"
+import Architecture from "./components/docs/sections/Architecture"
+import MemoryDeepDive from "./components/docs/sections/MemoryDeepDive"
+import AdvancedRAG from "./components/docs/sections/AdvancedRAG"
+import Integration from "./components/docs/sections/Integration"
+import { Navigate } from "react-router-dom"
+
 function App() {
   return (
     <ServerStatusProvider>
@@ -24,7 +34,17 @@ function App() {
               <Route path="/demo" element={<RAGDemo />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/docs" element={<Docs />} />
+              <Route path="/docs" element={<Docs />}>
+                <Route index element={<Navigate to="intro" replace />} />
+                <Route path="intro" element={<Intro />} />
+                <Route path="architecture" element={<Architecture />} />
+                <Route path="env-setup" element={<EnvSetup />} />
+                <Route path="features" element={<Features />} />
+                <Route path="memory" element={<MemoryDeepDive />} />
+                <Route path="advanced" element={<AdvancedRAG />} />
+                <Route path="api" element={<ApiReference />} />
+                <Route path="integration" element={<Integration />} />
+              </Route>
             </Routes>
             <Footer />
           </div>

@@ -82,17 +82,21 @@ const Header = () => {
           {/* Mobile Toggle Button - Unique Design */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden relative z-10 flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-xl bg-slate-100 text-slate-900 border border-slate-200 font-medium text-sm hover:bg-slate-200 transition-colors"
+            className="md:hidden relative z-10 flex items-center gap-2 px-4 py-2 rounded-full 
+            bg-purple-200/30
+            backdrop-blur-sm
+            border border-purple-300/40
+            shadow-lg shadow-purple-500/20 font-medium text-sm transition-colors"
           >
             <span className="sr-only">Toggle menu</span>
             <AnimatePresence mode="wait">
               {open ? (
                 <motion.div
                   key="close"
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
                   className="flex items-center gap-2"
                 >
                   <span>Close</span>
@@ -101,10 +105,10 @@ const Header = () => {
               ) : (
                 <motion.div
                   key="menu"
-                  initial={{ opacity: 0, rotate: 90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: -90 }}
-                  transition={{ duration: 0.2 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
                   className="flex items-center gap-2"
                 >
                   <span>Menu</span>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { BsDatabaseGear } from "react-icons/bs"
 import {
   SiPytorch,
   SiRedis,
@@ -12,20 +13,25 @@ import {
   SiPostgresql,
   SiPydantic,
   SiGunicorn,
+  SiOllama,
+  SiAnthropic,
 } from "react-icons/si"
 
 const techs = [
-    { name: "Python", icon: SiPython },
-    { name: "Pydantic", icon: SiPydantic },
-    { name: "Gunicorn", icon: SiGunicorn },
-    { name: "OpenAI", icon: SiOpenai },
-    { name: "LangChain", icon: SiLangchain },
-    { name: "FastAPI", icon: SiFastapi },
-    { name: "PyTorch", icon: SiPytorch },
-    { name: "HuggingFace", icon: SiHuggingface },
-    { name: "Redis", icon: SiRedis },
-    { name: "PostgreSQL", icon: SiPostgresql },
-    { name: "React", icon: SiReact },
+  { name: "Python", icon: SiPython },
+  { name: "Pydantic", icon: SiPydantic },
+  { name: "Gunicorn", icon: SiGunicorn },
+  { name: "OpenAI", icon: SiOpenai },
+  { name: "LangChain", icon: SiLangchain },
+  { name: "FastAPI", icon: SiFastapi },
+  { name: "PyTorch", icon: SiPytorch },
+  { name: "HuggingFace", icon: SiHuggingface },
+  { name: "Redis", icon: SiRedis },
+  { name: "PostgreSQL", icon: SiPostgresql },
+  { name: "React", icon: SiReact },
+  { name: "Chroma", icon: BsDatabaseGear },
+  { name: "Ollama", icon: SiOllama },
+  { name: "Anthropic", icon: SiAnthropic },
 ]
 
 const TechMarquee = () => {
