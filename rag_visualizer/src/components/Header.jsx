@@ -63,7 +63,7 @@ const Header = () => {
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 ">
           <a
             href="https://github.com/Matrixxboy/TheUnltimateRAG"
             target="_blank"
@@ -82,22 +82,21 @@ const Header = () => {
           {/* Mobile Toggle Button - Unique Design */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden relative z-10 flex items-center gap-2 px-4 py-2 rounded-full 
+            className="md:hidden relative z-70 flex items-center gap-2 px-4 py-2 rounded-full 
             bg-purple-200/30
             backdrop-blur-sm
             border border-purple-300/40
             shadow-lg shadow-purple-500/20 font-medium text-sm transition-colors"
           >
-            <span className="sr-only">Toggle menu</span>
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               {open ? (
                 <motion.div
                   key="close"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="flex items-center gap-2"
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-center gap-2 "
                 >
                   <span>Close</span>
                   <X size={16} />
@@ -108,7 +107,7 @@ const Header = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   className="flex items-center gap-2"
                 >
                   <span>Menu</span>
@@ -128,7 +127,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-white/70 backdrop-blur-xl overflow-visible h-full md:hidden pt-24 px-6 pb-6 flex flex-col justify-between"
+            className="fixed inset-0 z-40 bg-white min-h-screen md:hidden pt-24 px-6 pb-6 flex flex-col justify-between"
           >
             <div className="flex flex-col gap-2">
               {items.map((item, idx) => (
