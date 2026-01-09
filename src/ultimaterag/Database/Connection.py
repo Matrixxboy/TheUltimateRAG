@@ -2,7 +2,7 @@ import psycopg2
 import os
 import sys
 from dotenv import load_dotenv
-from theultimaterag.config.settings import settings
+from ultimaterag.config.settings import settings
 load_dotenv()
 
 

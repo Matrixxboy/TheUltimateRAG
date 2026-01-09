@@ -1,7 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 from langchain_core.output_parsers import JsonOutputParser
-from theultimaterag.LLM.connection import get_llm
+from ultimaterag.LLM.connection import get_llm
 
 # --- Data Models ---
 

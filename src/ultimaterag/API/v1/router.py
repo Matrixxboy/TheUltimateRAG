@@ -1,4 +1,4 @@
-from theultimaterag.API.v1.endpoints import ingest, chat, memory, agent
+from ultimaterag.API.v1.endpoints import ingest, chat, memory, agent
 from fastapi import APIRouter
 
 api_router = APIRouter()

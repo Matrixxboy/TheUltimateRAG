@@ -1,4 +1,4 @@
-from theultimaterag.server import app
+from ultimaterag.server import app
 
 if __name__ == "__main__":
     import uvicorn

@@ -2,14 +2,14 @@ from typing import List, Optional, Any, Tuple
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
-from theultimaterag.config.settings import settings
+from ultimaterag.config.settings import settings
 import numpy as np
 from sklearn.decomposition import PCA
-from theultimaterag.Database.Connection import get_db_connection
+from ultimaterag.Database.Connection import get_db_connection
 from pgvector.psycopg2 import register_vector
 import json
 from .base import VectorDBBase
-from theultimaterag.LLM.embeddings import get_embedding_model
+from ultimaterag.LLM.embeddings import get_embedding_model
 
 class CustomPostgresRetriever(BaseRetriever):
     vector_manager: Any

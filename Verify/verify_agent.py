@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from app import app
-from theultimaterag.config.settings import settings
+from ultimaterag.config.settings import settings
 
 client = TestClient(app)
 

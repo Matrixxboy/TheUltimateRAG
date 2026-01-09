@@ -1,5 +1,5 @@
 from langchain_core.language_models import BaseChatModel
-from theultimaterag.config.settings import settings
+from ultimaterag.config.settings import settings
 
 def get_llm() -> BaseChatModel:
     """

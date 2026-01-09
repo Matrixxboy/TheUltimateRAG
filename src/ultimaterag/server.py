@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from theultimaterag.config.settings import settings
-from theultimaterag.API.v1.router import api_router
+from ultimaterag.config.settings import settings
+from ultimaterag.API.v1.router import api_router
 from contextlib import asynccontextmanager
 
 def create_app() -> FastAPI:
@@ -11,7 +11,7 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title=settings.APP_NAME,
         description="A Ultimate RAG system with memory and vector storage.",
-        version="1.0.0",
+        version="0.1.0",
         docs_url="/docs",
         redoc_url="/redoc"
     )
@@ -42,4 +42,4 @@ def start():
     Entry point for CLI.
     """
     import uvicorn
-    uvicorn.run("theultimaterag.server:app", host="0.0.0.0", port=8080, reload=True)
+    uvicorn.run("ultimaterag.server:app", host="0.0.0.0", reload=True)

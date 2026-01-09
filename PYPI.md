@@ -12,7 +12,7 @@ Build scalable, secure, and intelligent RAG (Retrieval-Augmented Generation) sys
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 🔗 **Official Website & Documentation**  
-👉 https://theultimaterag.vercel.app/
+👉 https://ultimaterag.vercel.app/
 
 [Key Features](#-key-features) •
 [Architecture](#-system-architecture) •
@@ -30,12 +30,14 @@ Build scalable, secure, and intelligent RAG (Retrieval-Augmented Generation) sys
 **TUG (TheUltimateRAG)** is a **real-world, production-grade RAG framework**, not just another tutorial or demo project.
 
 It is designed to solve common problems developers face when moving from simple prototypes to **scalable AI systems**, such as:
+
 - Multi-user data separation
 - Long-term memory handling
 - Organizational knowledge sharing
 - Clean, modular architecture
 
 Whether you’re building:
+
 - A **corporate knowledge assistant**
 - A **legal or research AI**
 - A **personal second-brain**
@@ -45,7 +47,7 @@ Whether you’re building:
 
 For a complete walkthrough, architecture deep-dives, and usage examples,  
 📘 **visit the official documentation:**  
-**https://theultimaterag.vercel.app/**
+**https://ultimaterag.vercel.app/**
 
 # 🔐 Environment Configuration for TheUltimateRAG
 
@@ -62,7 +64,7 @@ At the **root of the project**, create a file named:
 
 ```bash
 .env
-````
+```
 
 ---
 
@@ -186,8 +188,8 @@ The system automatically builds the Redis connection URL internally.
 
 The project uses:
 
-* `python-dotenv`
-* `pydantic-settings`
+- `python-dotenv`
+- `pydantic-settings`
 
 ```python
 load_dotenv()
@@ -213,9 +215,9 @@ VECTOR_DB_TYPE=chroma
 
 ## ⚠️ Important Notes
 
-* **Do NOT commit `.env` to Git**
-* Add `.env` to `.gitignore`
-* Use different `.env` files for dev & prod if needed
+- **Do NOT commit `.env` to Git**
+- Add `.env` to `.gitignore`
+- Use different `.env` files for dev & prod if needed
 
 ---
 

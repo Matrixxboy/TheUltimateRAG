@@ -2,13 +2,13 @@ from typing import List, Optional, Any
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
-from theultimaterag.config.settings import settings
+from ultimaterag.config.settings import settings
 import chromadb
 from chromadb.config import Settings as ChromaSettings
 from .base import VectorDBBase
 from sklearn.decomposition import PCA
 import numpy as np
-from theultimaterag.LLM.embeddings import get_embedding_model
+from ultimaterag.LLM.embeddings import get_embedding_model
 
 class CustomChromaRetriever(BaseRetriever):
     vector_manager: Any

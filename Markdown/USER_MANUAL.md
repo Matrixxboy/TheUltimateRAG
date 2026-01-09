@@ -21,7 +21,7 @@ pip install -e .
 If distributed, you can install it via pip:
 
 ```bash
-pip install theultimaterag
+pip install ultimaterag
 ```
 
 ---
@@ -56,7 +56,7 @@ The system uses a `.env` file for configuration. Copy `.env.example` to `.env`.
 After installation, use the command line:
 
 ```bash
-theultimaterag start
+ultimaterag start
 ```
 
 ### Method B: Legacy / Dev

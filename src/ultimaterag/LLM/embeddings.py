@@ -1,5 +1,5 @@
 from typing import Any
-from theultimaterag.config.settings import settings
+from ultimaterag.config.settings import settings
 
 def get_embedding_model() -> Any:
     """

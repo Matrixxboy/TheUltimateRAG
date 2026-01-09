@@ -1,9 +1,9 @@
 from typing import Dict, List, Any
 from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, BaseMessage
-from theultimaterag.config.settings import settings
-from theultimaterag.Database.Connection import get_db_connection
-from theultimaterag.LLM.connection import get_llm
+from ultimaterag.config.settings import settings
+from ultimaterag.Database.Connection import get_db_connection
+from ultimaterag.LLM.connection import get_llm
 from psycopg2.extras import DictCursor
 import json
 from langchain_community.chat_message_histories import RedisChatMessageHistory
@@ -32,7 +32,7 @@ class MemoryManager:
                     # Note: Path might need adjustment depending on where python is run
                     # We assume running from root
                     import os
-                    schema_path = "src/theultimaterag/Database/schema.sql"
+                    schema_path = "src/ultimaterag/Database/schema.sql"
                     if not os.path.exists(schema_path):
                          # Fallback for dev environment or different CWD
                          schema_path = os.path.join(os.path.dirname(__file__), "../Database/schema.sql")

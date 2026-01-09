@@ -1,6 +1,6 @@
 # Publishing to PyPI
 
-This guide explains how to package and publish **TheUltimateRAG** to the Python Package Index (PyPI) so users can install it via `pip install theultimaterag`.
+This guide explains how to package and publish **TheUltimateRAG** to the Python Package Index (PyPI) so users can install it via `pip install ultimaterag`.
 
 ## Prerequisites
 
@@ -55,5 +55,5 @@ python -m twine upload dist/*
 After uploading, you can verify it by installing it in a fresh environment:
 
 ```bash
-pip install theultimaterag
+pip install ultimaterag
 ```

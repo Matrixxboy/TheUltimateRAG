@@ -1,6 +1,6 @@
 from typing import List, Optional, Any
 from langchain_core.documents import Document
-from theultimaterag.config.settings import settings
+from ultimaterag.config.settings import settings
 from .vector_db.base import VectorDBBase
 from .vector_db.postgres import PostgresVectorDB
 from .vector_db.chroma import ChromaVectorDB

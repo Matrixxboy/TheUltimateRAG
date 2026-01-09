@@ -27,7 +27,7 @@ const AdvancedRAG = () => {
           <CodeBlock
             title="Python"
             language="python"
-            code={`from theultimaterag.core.workflows.engine import WorkflowEngine
+            code={`from ultimaterag.core.workflows.engine import WorkflowEngine
 
 # Initialize the engine (loads graders and rewriters)
 workflow = WorkflowEngine()`}

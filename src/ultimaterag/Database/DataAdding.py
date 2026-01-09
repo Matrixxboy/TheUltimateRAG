@@ -1,5 +1,5 @@
 from sentence_transformers import SentenceTransformer
-from theultimaterag.Database.Connection import get_db_connection
+from ultimaterag.Database.Connection import get_db_connection
 
 # Load embedding model
 model = SentenceTransformer('all-MiniLM-L6-v2')

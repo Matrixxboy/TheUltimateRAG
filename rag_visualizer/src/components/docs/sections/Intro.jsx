@@ -27,7 +27,7 @@ const Intro = () => {
             <CodeBlock
               title="Terminal"
               language="bash"
-              code="pip install theultimaterag"
+              code="pip install ultimaterag"
             />
           </div>
         </div>
@@ -52,7 +52,7 @@ const Intro = () => {
             <CodeBlock
               title="Terminal"
               language="bash"
-              code="theultimaterag start"
+              code="ultimaterag start"
             />
 
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700">

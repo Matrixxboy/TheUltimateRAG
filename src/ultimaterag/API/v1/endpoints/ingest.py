@@ -3,9 +3,9 @@ from pydantic import BaseModel
 from typing import Optional
 import os
 import shutil
-from theultimaterag.core.container import rag_engine
-from theultimaterag.utils.Response_Helper import make_response
-from theultimaterag.utils.Response_Helper_Model import HTTPStatusCode, APICode
+from ultimaterag.core.container import rag_engine
+from ultimaterag.utils.Response_Helper import make_response
+from ultimaterag.utils.Response_Helper_Model import HTTPStatusCode, APICode
 
 router = APIRouter()
 

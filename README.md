@@ -12,7 +12,7 @@ Build scalable, secure, and intelligent RAG (Retrieval-Augmented Generation) sys
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 🔗 **Official Website & Documentation**  
-👉 https://theultimaterag.vercel.app/
+👉 https://ultimaterag.vercel.app/
 
 [Key Features](#-key-features) •
 [Architecture](#-system-architecture) •
@@ -30,12 +30,14 @@ Build scalable, secure, and intelligent RAG (Retrieval-Augmented Generation) sys
 **TUG (TheUltimateRAG)** is a **real-world, production-grade RAG framework**, not just another tutorial or demo project.
 
 It is designed to solve common problems developers face when moving from simple prototypes to **scalable AI systems**, such as:
+
 - Multi-user data separation
 - Long-term memory handling
 - Organizational knowledge sharing
 - Clean, modular architecture
 
 Whether you’re building:
+
 - A **corporate knowledge assistant**
 - A **legal or research AI**
 - A **personal second-brain**
@@ -45,20 +47,20 @@ Whether you’re building:
 
 For a complete walkthrough, architecture deep-dives, and usage examples,  
 📘 **visit the official documentation:**  
-**https://theultimaterag.vercel.app/**
+**https://ultimaterag.vercel.app/**
 
 ---
 
 ## 🌟 Key Features (Explained Simply)
 
-| Feature | What It Means for You |
-|------|----------------|
-| ⚡ **High-Performance API** | Built with **FastAPI** for fast, async, and scalable AI services |
-| 🛡️ **True Multi-Tenant Isolation** | Each user’s data is fully isolated and secure |
-| 🏢 **Organization-Level Knowledge** | Share documents across teams without duplicating data |
-| 🧠 **Session-Aware Memory** | Conversations retain context naturally across turns |
-| 🔍 **Hybrid Semantic Search** | Metadata-aware vector search with logical filters |
-| 👁️ **RAG Visualizer GUI** | Real-time visualization of retrieval, context, and generation |
+| Feature                             | What It Means for You                                            |
+| ----------------------------------- | ---------------------------------------------------------------- |
+| ⚡ **High-Performance API**         | Built with **FastAPI** for fast, async, and scalable AI services |
+| 🛡️ **True Multi-Tenant Isolation**  | Each user’s data is fully isolated and secure                    |
+| 🏢 **Organization-Level Knowledge** | Share documents across teams without duplicating data            |
+| 🧠 **Session-Aware Memory**         | Conversations retain context naturally across turns              |
+| 🔍 **Hybrid Semantic Search**       | Metadata-aware vector search with logical filters                |
+| 👁️ **RAG Visualizer GUI**           | Real-time visualization of retrieval, context, and generation    |
 
 ---
 
@@ -87,22 +89,20 @@ graph TD
         Vector <-->|Embeddings| Chroma[(ChromaDB)]
         Memory <-->|Chat Logs| Cache[(In-Memory / Redis)]
     end
-````
+```
 
 📖 **Detailed architecture explanation available at:**
-👉 [https://theultimaterag.vercel.app/](https://theultimaterag.vercel.app/)
+👉 [https://ultimaterag.vercel.app/](https://ultimaterag.vercel.app/)
 
 ---
-
-
 
 ## 🚀 Getting Started Quickly
 
 ### Requirements
 
-* Python **3.10+**
-* Node.js & npm (for the Visualizer UI)
-* API keys (OpenAI, Anthropic, etc.)
+- Python **3.10+**
+- Node.js & npm (for the Visualizer UI)
+- API keys (OpenAI, Anthropic, etc.)
 
 ### Installation Steps
 
@@ -127,7 +127,7 @@ At the **root of the project**, create a file named:
 
 ```bash
 .env
-````
+```
 
 ---
 
@@ -251,8 +251,8 @@ The system automatically builds the Redis connection URL internally.
 
 The project uses:
 
-* `python-dotenv`
-* `pydantic-settings`
+- `python-dotenv`
+- `pydantic-settings`
 
 ```python
 load_dotenv()
@@ -285,7 +285,7 @@ VECTOR_DB_TYPE=chroma
 TUG start
 ```
 
-*or*
+_or_
 
 ```bash
 python app.py
@@ -297,10 +297,10 @@ python app.py
 
 A dedicated **React-based GUI** lets you:
 
-* Inspect retrieved documents
-* Understand context flow
-* Debug hallucinations
-* Optimize retrieval strategies
+- Inspect retrieved documents
+- Understand context flow
+- Debug hallucinations
+- Optimize retrieval strategies
 
 ```bash
 cd rag_visualizer
@@ -317,14 +317,14 @@ Access live API documentation at:
 
 ### Core APIs
 
-* **POST** `/api/v1/chat` → Chat with your knowledge base
-* **POST** `/api/v1/ingest` → Secure document ingestion
+- **POST** `/api/v1/chat` → Chat with your knowledge base
+- **POST** `/api/v1/ingest` → Secure document ingestion
 
 ### Agent & Advanced APIs
 
-* **GET** `/api/v1/agent/tools`
-* **POST** `/api/v1/agent/search`
-* **POST** `/api/v1/agent/workflow` → Self-correcting RAG pipelines
+- **GET** `/api/v1/agent/tools`
+- **POST** `/api/v1/agent/search`
+- **POST** `/api/v1/agent/workflow` → Self-correcting RAG pipelines
 
 📘 Full API reference:
 👉 [https://theultimaterag.vercel.app/](https://theultimaterag.vercel.app/)
@@ -344,9 +344,9 @@ See `CONTRIBUTING.md` for guidelines.
 
 ## 🎓 Learning & Documentation
 
-* 📘 **Official Docs:** [https://theultimaterag.vercel.app/](https://theultimaterag.vercel.app/)
-* 📚 **User Manual:** `USER_MANUAL.md`
-* 🌱 **Git Learning Guide:** `LEARN.md`
+- 📘 **Official Docs:** [https://theultimaterag.vercel.app/](https://theultimaterag.vercel.app/)
+- 📚 **User Manual:** `USER_MANUAL.md`
+- 🌱 **Git Learning Guide:** `LEARN.md`
 
 ---
 

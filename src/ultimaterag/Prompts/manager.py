@@ -1,6 +1,6 @@
 from typing import Optional
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from theultimaterag.Prompts.SystemPrompt import SYSTEM_PROMPT as DEFAULT_SYSTEM_PROMPT
+from ultimaterag.Prompts.SystemPrompt import SYSTEM_PROMPT as DEFAULT_SYSTEM_PROMPT
 
 class PromptManager:
     @staticmethod

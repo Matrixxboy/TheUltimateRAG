@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from theultimaterag.utils.Response_Helper import make_response
-from theultimaterag.utils.Response_Helper_Model import HTTPStatusCode, APICode
-from theultimaterag.core.container import rag_engine
+from ultimaterag.utils.Response_Helper import make_response
+from ultimaterag.utils.Response_Helper_Model import HTTPStatusCode, APICode
+from ultimaterag.core.container import rag_engine
 
 router = APIRouter()
 

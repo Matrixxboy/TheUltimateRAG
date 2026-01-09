@@ -74,7 +74,7 @@ MEMORY_WINDOW_LIMIT=10 # Number of turns to keep in hot memory
           <CodeBlock
             title="Python"
             language="python"
-            code={`from theultimaterag.config import settings
+            code={`from ultimaterag.config import settings
 
 # Access typed configuration
 print(f"Current LLM: {settings.LLM_PROVIDER}")

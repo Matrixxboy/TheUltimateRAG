@@ -2,11 +2,11 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
-from theultimaterag.core.vector_store import VectorManager
-from theultimaterag.core.memory import MemoryManager
-from theultimaterag.config.settings import settings
-from theultimaterag.LLM.connection import get_llm
-from theultimaterag.Prompts.SystemPrompt import SYSTEM_PROMPT
+from ultimaterag.core.vector_store import VectorManager
+from ultimaterag.core.memory import MemoryManager
+from ultimaterag.config.settings import settings
+from ultimaterag.LLM.connection import get_llm
+from ultimaterag.Prompts.SystemPrompt import SYSTEM_PROMPT
 
 class RAGPipeline:
     def __init__(self):
@@ -43,7 +43,7 @@ class RAGPipeline:
         return self.memory_manager.get_session_memory(session_id)
 
     def ingest_file(self, file_path: str, user_id: str = None, access_level: str = "private"):
-        from theultimaterag.core.ingestion import IngestionManager
+        from ultimaterag.core.ingestion import IngestionManager
         ingester = IngestionManager()
         docs = ingester.process_and_split(file_path)
         self.vector_manager.add_documents(docs, user_id=user_id, access_level=access_level)
@@ -61,7 +61,7 @@ class RAGPipeline:
             # OpenAI supports max_tokens via bind as well usually, or we recreate the object
         
         # 1. Build Prompt dynamically
-        from theultimaterag.Prompts.manager import PromptManager
+        from ultimaterag.Prompts.manager import PromptManager
         prompt_template = PromptManager.get_chat_prompt(system_prompt)
 
         # 2. Define Chain
