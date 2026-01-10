@@ -1,7 +1,7 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 import { useState } from "react"
-import {motion,AnimatePresence} from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 
 import {
   Book,
@@ -13,12 +13,13 @@ import {
   Package,
   Database,
   Menu,
-  X
+  X,
 } from "lucide-react"
 
 const Sidebar = () => {
   const links = [
     { id: "intro", label: "Introduction", icon: Book },
+    { id: "cli-reference", label: "CLI Reference", icon: Terminal },
     { id: "architecture", label: "Architecture", icon: Cpu },
     { id: "env-setup", label: "Environment Setup", icon: Settings },
     { id: "features", label: "Core Features", icon: Layers },

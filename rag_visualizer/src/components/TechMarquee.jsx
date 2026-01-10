@@ -15,6 +15,7 @@ import {
   SiGunicorn,
   SiOllama,
   SiAnthropic,
+  SiPypi,
 } from "react-icons/si"
 
 const techs = [
@@ -32,6 +33,7 @@ const techs = [
   { name: "Chroma", icon: BsDatabaseGear },
   { name: "Ollama", icon: SiOllama },
   { name: "Anthropic", icon: SiAnthropic },
+  { name: "PyPI", icon: SiPypi },
 ]
 
 const TechMarquee = () => {

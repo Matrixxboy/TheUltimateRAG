@@ -20,6 +20,7 @@ import Architecture from "./components/docs/sections/Architecture"
 import MemoryDeepDive from "./components/docs/sections/MemoryDeepDive"
 import AdvancedRAG from "./components/docs/sections/AdvancedRAG"
 import Integration from "./components/docs/sections/Integration"
+import CliReference from "./components/docs/sections/CliReference"
 import { Navigate } from "react-router-dom"
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route path="/docs" element={<Docs />}>
                 <Route index element={<Navigate to="intro" replace />} />
                 <Route path="intro" element={<Intro />} />
+                <Route path="cli-reference" element={<CliReference />} />
                 <Route path="architecture" element={<Architecture />} />
                 <Route path="env-setup" element={<EnvSetup />} />
                 <Route path="features" element={<Features />} />

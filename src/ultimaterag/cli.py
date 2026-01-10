@@ -37,6 +37,7 @@ def start(
     typer.secho(divider(), fg=typer.colors.BRIGHT_BLUE)
     typer.secho(f"🚀 Starting {settings.APP_NAME}", fg=typer.colors.GREEN, bold=True)
     typer.secho(f"🌐 URL     : http://{host}:{port}", fg=typer.colors.CYAN)
+    typer.secho(f"🌐 URL     : http://localhost:{port}", fg=typer.colors.CYAN)
     typer.secho(f"🔁 Reload  : {'ON' if reload else 'OFF'}", fg=typer.colors.YELLOW)
     typer.secho(divider(), fg=typer.colors.BRIGHT_BLUE)
 

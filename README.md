@@ -106,10 +106,20 @@ graph TD
 
 ### Installation Steps
 
-1️⃣ **Clone the Repository**
+### Installation Steps
+
+#### Option 1: Install via pip (Recommended)
 
 ```bash
-pip install TUG
+pip install ultimaterag
+```
+
+#### Option 2: Run from Source
+
+If you cloned the repository, install dependencies first:
+
+```bash
+pip install -e .
 ```
 
 # 🔐 Environment Configuration for TheUltimateRAG
@@ -279,16 +289,53 @@ VECTOR_DB_TYPE=chroma
 📘 Refer to the full configuration guide here:
 👉 [https://theultimaterag.vercel.app/](https://theultimaterag.vercel.app/)
 
-3️⃣ **Run the Platform**
+3️⃣ **Run the Platform (CLI)**
+
+You can use the installed `ultimaterag` CLI to control the system.
+
+**Start the Server:**
 
 ```bash
-TUG start
+ultimaterag start
+# Options: --host 0.0.0.0 --port 8000 --reload
 ```
 
-_or_
+or via python:
 
 ```bash
 python app.py
+```
+
+**Other CLI Commands:**
+
+- `ultimaterag version` : Show current version
+- `ultimaterag about` : Show project information
+- `ultimaterag license` : usage license
+- `ultimaterag help` : Show full help guide
+
+---
+
+---
+
+## 🧪 Custom Implementation Example
+
+We provide a standalone example [`example.py`](./example.py) in the root directory to demonstrate how to build a custom application using `ultimaterag` as a library.
+
+### How to Run
+
+```bash
+# Ensure you are in the project root
+python example.py
+```
+
+This starts a **custom FastAPI server** on port `8001` with a specific `/ask` endpoint that uses the RAG engine directly.
+
+**Test the Custom Endpoint:**
+
+```bash
+curl -X POST "http://localhost:8001/ask" \
+     -H "Content-Type: application/json" \
+     -d '{"query": "What is UltimateRAG?"}'
 ```
 
 ---

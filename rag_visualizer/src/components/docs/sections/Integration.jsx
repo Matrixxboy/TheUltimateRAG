@@ -10,6 +10,67 @@ const Integration = () => {
       description="Code examples for connecting your applications to TheUltimateRAG."
     >
       <div className="space-y-12">
+        {/* Internal Library Usage */}
+        <div>
+          <h3 className="text-xl font-bold text-slate-800 mb-4">
+            Internal Library Usage (example.py)
+          </h3>
+          <p className="text-slate-600 mb-4">
+            You can import <code>ultimaterag</code> components directly into
+            your Python application to build custom implementations.
+          </p>
+          <CodeBlock
+            title="example.py"
+            language="python"
+            code={`from fastapi import FastAPI
+from pydantic import BaseModel
+import uvicorn
+from langchain_core.messages import HumanMessage
+
+# Import UltimateRAG components
+from ultimaterag.core.container import rag_engine
+from ultimaterag.utils.Response_Helper import make_response
+from ultimaterag.utils.Response_Helper_Model import HTTPStatusCode, APICode
+
+app = FastAPI(title="UltimateRAG Custom Example")
+
+class QueryRequest(BaseModel):
+    query: str
+
+@app.post("/ask")
+async def ask_agent(request: QueryRequest):
+    # 1. Retrieval
+    docs = rag_engine.vector_manager.similarity_search(
+        query=request.query,
+        k=3,
+        filter={"access_level": "common"}
+    )
+    
+    context = "\\n\\n".join([doc.page_content for doc in docs])
+    
+    # 2. Generation
+    prompt = f"""Use the context below to answer the user's question.
+    
+Context:
+{context}
+
+Question: 
+{request.query}"""
+    
+    response = rag_engine.llm.invoke([HumanMessage(content=prompt)])
+    
+    return make_response(
+        status=HTTPStatusCode.OK,
+        code=APICode.OK,
+        message="Query processed",
+        data={"answer": response.content}
+    )
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8001)`}
+          />
+        </div>
+
         {/* Python */}
         <div>
           <h3 className="text-xl font-bold text-slate-800 mb-4">
