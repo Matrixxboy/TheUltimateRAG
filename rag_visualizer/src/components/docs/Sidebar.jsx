@@ -1,33 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
-import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-
-import {
-  Book,
-  Code,
-  Terminal,
-  Layers,
-  Cpu,
-  Settings,
-  Package,
-  Database,
-  Menu,
-  X,
-} from "lucide-react"
+import { Menu, X } from "lucide-react"
+import { docsLinks } from "./docsLinks"
 
 const Sidebar = () => {
-  const links = [
-    { id: "intro", label: "Introduction", icon: Book },
-    { id: "cli-reference", label: "CLI Reference", icon: Terminal },
-    { id: "architecture", label: "Architecture", icon: Cpu },
-    { id: "env-setup", label: "Environment Setup", icon: Settings },
-    { id: "features", label: "Core Features", icon: Layers },
-    { id: "memory", label: "Memory System", icon: Database },
-    { id: "advanced", label: "Advanced RAG", icon: Package },
-    { id: "api", label: "API Reference", icon: Code },
-    { id: "integration", label: "Integration", icon: Terminal },
-  ]
+  const links = docsLinks
   const [open, setOpen] = useState(false)
   return (
     <>
